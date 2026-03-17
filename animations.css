@@ -1,0 +1,89 @@
+/* ══════════════════════════════════════════════
+   PIÑA GROWSHOP — animations.css
+   Keyframes, reveal, clases para GSAP
+   ══════════════════════════════════════════════ */
+
+/* ── KEYFRAMES ── */
+@keyframes blobDrift {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%       { transform: translate(30px,-20px) scale(1.05); }
+  66%       { transform: translate(-20px,15px) scale(.96); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes modalUp {
+  from { transform: translateY(30px) scale(.97); opacity: 0; }
+  to   { transform: translateY(0) scale(1);     opacity: 1; }
+}
+
+@keyframes badgePop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.5); }
+  70%  { transform: scale(.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ── BADGE ANIMATION ── */
+.badge.pop { animation: badgePop .4s var(--ease-bounce); }
+
+/* ── SCROLL REVEAL ── */
+.reveal-el {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s var(--ease), transform .55s var(--ease);
+}
+.reveal-el.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Delays para stagger manual */
+.delay-1 { transition-delay: .1s; }
+.delay-2 { transition-delay: .2s; }
+.delay-3 { transition-delay: .3s; }
+.delay-4 { transition-delay: .4s; }
+
+/* ── GSAP TARGET CLASSES ──
+   GSAP establece opacity/transform vía JS;
+   estas clases aseguran el estado inicial
+   visible cuando GSAP no está disponible   */
+.gsap-hero { will-change: transform, opacity; }
+
+/* ── SKELETON / LOADING ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-h) 50%, var(--surface) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--r-md);
+}
+
+/* ── PRODUCTO CARD — hover GSAP helper ── */
+.product-card { will-change: transform; }
+
+/* ── TRANSITIONS SECCIÓN ── */
+.page-section {
+  animation: fadeSlideUp .35s var(--ease);
+}
+
+/* ── WISHLIST BUTTON FILL ── */
+.wishlist-btn.has-items svg path {
+  fill: #e53935;
+  stroke: #e53935;
+}

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piña GrowShop — Tu Grow Store en Padre Hurtado</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Piña GrowShop: tienda premium de cultivo, smoke, tabaquería y aromas en Padre Hurtado, Santiago. Atención personalizada por WhatsApp. ¡Envíos a toda la RM!">
+  <meta name="keywords" content="growshop, cultivo, smoke, bongs, pipas, papelillos, Padre Hurtado, Santiago, Chile, fertilizantes, sustratos">
+  <link rel="canonical" href="https://pinagrowshop.cl/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Piña GrowShop — Tu Grow Store en Padre Hurtado">
+  <meta property="og:description" content="Productos de cultivo, smoke y aromas. Atención 24h por WhatsApp.">
+  <meta property="og:image"       content="https://pinagrowshop.cl/img/og-cover.jpg">
+  <meta property="og:url"         content="https://pinagrowshop.cl/">
+  <meta property="og:locale"      content="es_CL">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Piña GrowShop">
+  <meta name="twitter:description" content="Grow Store premium en Padre Hurtado.">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Piña GrowShop",
+    "description": "Tienda especializada en productos de cultivo, smoke, tabaquería y aromas",
+    "image": "https://pinagrowshop.cl/img/og-cover.jpg",
+    "url": "https://pinagrowshop.cl",
+    "telephone": "+56945802810",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "San Marcos 1801",
+      "addressLocality": "Padre Hurtado",
+      "addressRegion": "Región Metropolitana",
+      "addressCountry": "CL"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": -33.5637, "longitude": -70.7741 },
+    "openingHours": "Mo-Sa 10:00-20:00",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS (orden importa) -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════ GATE +18 ══ -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-pineapple">🍍</div>
+    <span class="gate-chip">SOLO +18</span>
+    <h2>Acceso Restringido</h2>
+    <p>Este sitio contiene productos para adultos mayores de 18 años.</p>
+    <div class="gate-actions">
+      <button id="gate-yes" class="btn-primary">Tengo 18 años o más</button>
+      <button id="gate-no" class="btn-ghost">No, salir</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ HEADER ══ -->
+<header id="site-header">
+  <div class="header-inner">
+
+    <a class="brand" href="#" onclick="showSection('inicio'); return false;">
+      <span class="brand-icon">🍍</span>
+      <span class="brand-name">Piña <span class="accent">GrowShop</span></span>
+    </a>
+
+    <nav id="main-nav" aria-label="Navegación principal">
+      <a class="nav-link active" data-section="inicio"    href="#">Inicio</a>
+      <a class="nav-link"       data-section="productos"  href="#">Productos</a>
+      <a class="nav-link"       data-section="servicios"  href="#">Servicios</a>
+      <a class="nav-link"       data-section="contacto"   href="#">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Buscar" onclick="toggleSearch()" title="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn wishlist-btn" aria-label="Lista de deseos" onclick="toggleWishlist()" title="Mis favoritos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span id="wishlist-count" class="badge hidden">0</span>
+      </button>
+      <button class="icon-btn cart-btn" aria-label="Carrito" onclick="toggleCart()" title="Carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span id="cart-count" class="badge hidden">0</span>
+      </button>
+      <button class="icon-btn admin-btn" aria-label="Admin" onclick="toggleAdmin()" title="Panel Admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+      </button>
+      <button id="hamburger" class="icon-btn hamburger" aria-label="Menú" aria-expanded="false" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+  <div id="search-bar" class="search-bar">
+    <input type="search" id="global-search" placeholder="Buscar en el catálogo…" autocomplete="off" oninput="liveSearch()">
+    <button class="btn-ghost" onclick="toggleSearch()">✕ Cerrar</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════ MAIN ══ -->
+<main id="app-main">
+
+  <!-- ─── SECCIÓN: INICIO ─── -->
+  <section id="inicio" class="page-section active">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="hero-content">
+        <span class="hero-badge gsap-hero">🌿 Grow Store Premium · Padre Hurtado</span>
+        <h1 class="hero-title gsap-hero">
+          Todo lo que<br>
+          <span class="accent">tu cultivo</span><br>
+          necesita
+        </h1>
+        <p class="hero-subtitle gsap-hero">
+          Sustratos, iluminación, smoke y aromas.<br>Calidad garantizada, atención personalizada.
+        </p>
+        <div class="hero-cta gsap-hero">
+          <button class="btn-primary btn-lg" onclick="showSection('productos')">Ver catálogo</button>
+          <a class="btn-ghost btn-lg" href="https://wa.me/56945802810" target="_blank" rel="noopener">💬 WhatsApp</a>
+        </div>
+        <div class="hero-stats gsap-hero">
+          <div class="stat"><b>200+</b><span>Productos</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><b>5★</b><span>Calificación</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><b>24h</b><span>Respuesta</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual gsap-hero">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="hero-pineapple">🍍</div>
+      </div>
+    </div>
+
+    <!-- Categorías rápidas -->
+    <div class="wrap reveal-el">
+      <div class="section-eyebrow">Categorías</div>
+      <h2 class="section-heading">¿Qué estás buscando?</h2>
+      <div class="cat-grid">
+        <button class="cat-tile" onclick="filterQuick('Smoke')">
+          <span class="cat-tile-icon">💨</span>
+          <span>Smoke</span>
+        </button>
+        <button class="cat-tile" onclick="filterQuick('Cultivo')">
+          <span class="cat-tile-icon">🌱</span>
+          <span>Cultivo</span>
+        </button>
+        <button class="cat-tile" onclick="filterQuick('Tabaquería')">
+          <span class="cat-tile-icon">🚬</span>
+          <span>Tabaquería</span>
+        </button>
+        <button class="cat-tile" onclick="filterQuick('Aromas')">
+          <span class="cat-tile-icon">🕯️</span>
+          <span>Aromas</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Destacados -->
+    <div id="featured-section" class="wrap reveal-el" style="display:none">
+      <div class="section-eyebrow">Lo mejor</div>
+      <h2 class="section-heading">Productos Destacados</h2>
+      <div id="featured-grid" class="product-grid"></div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="wrap reveal-el">
+      <div class="section-eyebrow">Testimonios</div>
+      <h2 class="section-heading">Lo que dicen nuestros clientes</h2>
+      <div class="reviews-grid">
+        <div class="review-card reveal-el"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Excelente atención y productos de calidad. Siempre encuentro lo que busco."</p><span>Carlos M.</span></div>
+        <div class="review-card reveal-el delay-1"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Respuesta rápida por WhatsApp. Me llegó todo perfecto y bien embalado."</p><span>Andrea S.</span></div>
+        <div class="review-card reveal-el delay-2"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Variedad impresionante. Definitivamente mi growshop favorito de la zona."</p><span>Miguel A.</span></div>
+        <div class="review-card reveal-el delay-3"><div class="review-stars">⭐⭐⭐⭐⭐</div><p>"Precios honestos y asesoría incluida. Muy profesionales."</p><span>Valentina R.</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─── SECCIÓN: PRODUCTOS ─── -->
+  <section id="productos" class="page-section">
+    <div class="wrap">
+      <div class="section-eyebrow">Catálogo completo</div>
+      <h2 class="section-heading">Todos los productos</h2>
+
+      <!-- Pills de categoría -->
+      <div id="filter-pills" class="filter-pills">
+        <button class="pill active" data-cat="">Todos</button>
+        <button class="pill" data-cat="Smoke">💨 Smoke</button>
+        <button class="pill" data-cat="Cultivo">🌱 Cultivo</button>
+        <button class="pill" data-cat="Tabaquería">🚬 Tabaquería</button>
+        <button class="pill" data-cat="Aromas">🕯️ Aromas</button>
+      </div>
+
+      <!-- Filtros secundarios -->
+      <div class="filters-bar">
+        <select id="filter-cat" onchange="updateSubcats(); applyFilters()">
+          <option value="">Todas las categorías</option>
+          <option>Smoke</option>
+          <option>Cultivo</option>
+          <option>Tabaquería</option>
+          <option>Aromas</option>
+        </select>
+        <select id="filter-subcat" disabled onchange="applyFilters()">
+          <option value="">Todas las subcategorías</option>
+        </select>
+        <select id="sort-price" onchange="applyFilters()">
+          <option value="">Precio</option>
+          <option value="asc">Menor → Mayor</option>
+          <option value="desc">Mayor → Menor</option>
+        </select>
+        <select id="sort-alpha" onchange="applyFilters()">
+          <option value="">A-Z</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+        <button class="btn-ghost btn-sm" onclick="resetFilters()">✕ Limpiar</button>
+      </div>
+
+      <div id="results-info" class="results-info"></div>
+      <div id="product-grid" class="product-grid" role="list" aria-label="Catálogo de productos"></div>
+    </div>
+  </section>
+
+  <!-- ─── SECCIÓN: SERVICIOS ─── -->
+  <section id="servicios" class="page-section">
+    <div class="wrap">
+      <div class="section-eyebrow">Lo que ofrecemos</div>
+      <h2 class="section-heading">Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card reveal-el">
+          <div class="service-icon">🌱</div>
+          <h3>Asesoría en cultivo</h3>
+          <p>Orientación personalizada para tu setup, desde principiantes hasta growers avanzados.</p>
+        </div>
+        <div class="service-card reveal-el delay-1">
+          <div class="service-icon">📦</div>
+          <h3>Despacho discreto</h3>
+          <p>Envíos a todo Santiago con embalaje neutro. Coordina horario y punto por WhatsApp.</p>
+        </div>
+        <div class="service-card reveal-el delay-2">
+          <div class="service-icon">💬</div>
+          <h3>Atención 24h</h3>
+          <p>Respondemos rápido por WhatsApp. Consultas sobre productos, disponibilidad y precios.</p>
+        </div>
+        <div class="service-card reveal-el delay-3">
+          <div class="service-icon">🔒</div>
+          <h3>Compra privada</h3>
+          <p>Transacción discreta y confidencial. Tu privacidad siempre es nuestra prioridad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECCIÓN: CONTACTO ─── -->
+  <section id="contacto" class="page-section">
+    <div class="wrap">
+      <div class="section-eyebrow">Encuéntranos</div>
+      <h2 class="section-heading">Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-card reveal-el">
+          <div class="contact-icon">📍</div>
+          <h3>Ubicación</h3>
+          <p>San Marcos 1801<br>Padre Hurtado, Región Metropolitana</p>
+        </div>
+        <div class="contact-card reveal-el delay-1">
+          <div class="contact-icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>+56 9 4580 2810</p>
+          <a class="btn-primary" href="https://wa.me/56945802810" target="_blank" rel="noopener">Escribir ahora</a>
+        </div>
+        <div class="contact-card reveal-el delay-2">
+          <div class="contact-icon">📸</div>
+          <h3>Instagram</h3>
+          <p>@pinagrowshop</p>
+          <a class="btn-ghost" href="https://instagram.com/pinagrowshop" target="_blank" rel="noopener">Ver perfil</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner wrap">
+    <div class="footer-brand">
+      <span class="brand-icon">🍍</span>
+      <b>Piña GrowShop</b>
+      <p>Tu grow store de confianza<br>en Padre Hurtado.</p>
+    </div>
+    <div class="footer-links">
+      <b>Navegación</b>
+      <a href="#" onclick="showSection('inicio'); return false;">Inicio</a>
+      <a href="#" onclick="showSection('productos'); return false;">Productos</a>
+      <a href="#" onclick="showSection('servicios'); return false;">Servicios</a>
+      <a href="#" onclick="showSection('contacto'); return false;">Contacto</a>
+    </div>
+    <div class="footer-links">
+      <b>Categorías</b>
+      <a href="#" onclick="filterQuick('Smoke'); return false;">Smoke</a>
+      <a href="#" onclick="filterQuick('Cultivo'); return false;">Cultivo</a>
+      <a href="#" onclick="filterQuick('Tabaquería'); return false;">Tabaquería</a>
+      <a href="#" onclick="filterQuick('Aromas'); return false;">Aromas</a>
+    </div>
+    <div class="footer-contact">
+      <b>Contacto</b>
+      <p>📍 San Marcos 1801, Padre Hurtado</p>
+      <p>💬 +56 9 4580 2810</p>
+      <div class="payment-chips">
+        <span>Transferencia</span>
+        <span>Efectivo</span>
+        <span>WhatsApp Pay</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Piña GrowShop. Solo para mayores de 18 años.</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════ CART SIDEBAR ══ -->
+<div id="cart-overlay" class="overlay-bg" onclick="toggleCart()"></div>
+<aside id="cart-sidebar" aria-label="Carrito de compras">
+  <div class="sidebar-header">
+    <h3>🛒 Mi Carrito</h3>
+    <button class="icon-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div id="cart-items" class="sidebar-body"></div>
+  <div class="sidebar-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <strong id="cart-total">$0</strong>
+    </div>
+    <button class="btn-primary btn-full" onclick="checkout()">💬 Pedir por WhatsApp</button>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════ WISHLIST SIDEBAR ══ -->
+<div id="wishlist-overlay" class="overlay-bg" onclick="toggleWishlist()"></div>
+<aside id="wishlist-sidebar" aria-label="Lista de deseos">
+  <div class="sidebar-header">
+    <h3>❤️ Mis Favoritos</h3>
+    <button class="icon-btn" onclick="toggleWishlist()">✕</button>
+  </div>
+  <div id="wishlist-items" class="sidebar-body"></div>
+</aside>
+
+<!-- ══════════════════════════════════ MODAL PRODUCTO ══ -->
+<div id="product-modal" class="modal-overlay">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <img id="modal-img" src="" alt="" class="modal-main-img" loading="lazy">
+        <div id="modal-thumbs" class="modal-thumbs"></div>
+      </div>
+      <div class="modal-info">
+        <div class="modal-header-row">
+          <span id="modal-cat" class="chip"></span>
+          <div id="modal-stock-badge"></div>
+        </div>
+        <h2 id="modal-name" class="modal-name"></h2>
+        <p  id="modal-price" class="modal-price"></p>
+        <p  id="modal-desc"  class="modal-desc"></p>
+        <div class="modal-actions">
+          <div class="qty-control">
+            <button onclick="changeQty(-1)">−</button>
+            <input type="number" id="modal-qty" value="1" min="1">
+            <button onclick="changeQty(1)">+</button>
+          </div>
+          <button id="btn-modal-add" class="btn-primary">🛒 Agregar</button>
+          <button id="btn-modal-wish" class="btn-ghost wish-btn" onclick="toggleWishlistItem(window._modalId)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="modal-related" id="modal-related-wrap">
+          <h4>Productos relacionados</h4>
+          <div id="related-grid" class="related-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ ADMIN PANEL ══ -->
+<div id="admin-panel" class="admin-panel">
+  <div class="admin-header">
+    <span>🔧 Panel Admin</span>
+    <span id="firebase-status" class="fb-status">● Conectando…</span>
+    <button class="icon-btn" onclick="closeAdmin()">✕</button>
+  </div>
+  <div class="admin-body">
+
+    <!-- Formulario -->
+    <div class="admin-form">
+      <h4 id="admin-form-title">➕ Nuevo producto</h4>
+      <div class="form-row">
+        <label>Nombre *<input type="text"    id="admin-nombre"   placeholder="Ej: Bong 30cm"></label>
+        <label>Precio   <input type="number" id="admin-precio"   placeholder="Ej: 15990" min="0"></label>
+      </div>
+      <div class="form-row">
+        <label>Categoría *
+          <select id="admin-categoria" onchange="updateAdminSubcats()">
+            <option value="">Seleccionar…</option>
+            <option>Smoke</option><option>Cultivo</option>
+            <option>Tabaquería</option><option>Aromas</option>
+          </select>
+        </label>
+        <label>Subcategoría
+          <select id="admin-subcategoria"><option value="">Seleccionar…</option></select>
+        </label>
+      </div>
+      <label>Descripción<textarea id="admin-descripcion" rows="3" placeholder="Descripción del producto…"></textarea></label>
+      <div class="form-row">
+        <label>Stock <input type="number" id="admin-stock" placeholder="Ej: 10" min="0"></label>
+        <label class="check-label">
+          <input type="checkbox" id="admin-destacado"> Destacado en inicio
+        </label>
+      </div>
+      <label>Imágenes <input type="file" id="admin-files" accept="image/*" multiple onchange="handleAdminFilesChange(event)"></label>
+      <div class="form-actions">
+        <button id="admin-save-btn" class="btn-primary" onclick="saveProduct()">➕ Agregar</button>
+        <button class="btn-ghost" onclick="resetAdminForm()">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Lista -->
+    <div class="admin-list-wrap">
+      <div class="admin-list-header">
+        <h4>Catálogo (<span id="admin-count">0</span>)</h4>
+        <button class="btn-ghost btn-sm" onclick="migrateOldData()" title="Migrar datos del formato anterior">♻️ Migrar datos v1</button>
+      </div>
+      <div id="admin-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ TOAST ══ -->
+<div id="toast-container" aria-live="polite"></div>
+
+<!-- WhatsApp float -->
+<a class="wa-float" href="https://wa.me/56945802810" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════ SCRIPTS ══ -->
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Firebase (ES Module) -->
+<script type="module" src="js/firebase.js"></script>
+
+<!-- App scripts (classic, orden importa) -->
+<script src="js/store.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
