@@ -66,7 +66,7 @@ const PRODUCTS = [
     description: 'Con todo. Tomate, palta, chucrut y mayonesa. Para quienes no quieren elegir. El máximo.',
     price: 1800,
     tag: 'nuevo',
-    image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=85',
+    image: '/js/niega.jpg',
     // 🖼 Reemplazar con: /images/completo-as.jpg
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
