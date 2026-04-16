@@ -1,15 +1,12 @@
 /* ==========================================================
-   data.js — Donde Javier | Catálogo de productos y zonas
-   Para agregar imágenes locales: reemplaza la URL en `image`
-   por la ruta local: /images/[slug].jpg
+   data.js — Donde Javier | Catálogo y zonas de despacho
    ========================================================== */
 
 const CATEGORIES = [
-  { id: 'todos',    label: 'Todo',      icon: '✦' },
-  { id: 'completos',label: 'Completos', icon: '🌭' },
-  { id: 'papas',    label: 'Papas',     icon: '🍟' },
-  { id: 'combos',   label: 'Combos',    icon: '🎁' },
-  { id: 'bebidas',  label: 'Bebidas',   icon: '🥤' },
+  { id: 'todos',     label: 'Todo el menú' },
+  { id: 'completos', label: 'Completos'    },
+  { id: 'papas',     label: 'Papas Fritas' },
+  { id: 'combos',    label: 'Combos'       },
 ];
 
 const ZONES = [
@@ -27,11 +24,11 @@ const PRODUCTS = [
     slug: 'completo-clasico',
     name: 'Completo Clásico',
     category: 'completos',
-    description: 'Con todo. Tomate, palta, chucrut y mayonesa. Para quienes no quieren elegir. El máximo.',
+    description: 'El balance justo entre el toque fresco del tomate y el sabor intenso del chucrut, sobre pan artesanal horneado cada día. El de siempre, bien hecho.',
     price: 1000,
     tag: null,
-    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/Z7JDkununDWLyWEC6-300-x.webp',
-    // 🖼 Reemplazar con: /images/completo-clasico.jpg
+    hasSizes: false,
+    image: 'https://images.unsplash.com/photo-1612392166886-ee8475b03af2?auto=format&fit=crop&w=900&q=85',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -45,11 +42,11 @@ const PRODUCTS = [
     slug: 'completo-italiano',
     name: 'Completo Italiano',
     category: 'completos',
-    description: 'Cremosa palta natural procesada diariamente sobre vienesa premium. El plato más solicitado de la casa.',
+    description: 'Con palta natural trabajada a diario, tomate fresco y mayonesa casera sobre vienesa de primera. El más pedido del local, y con razón.',
     price: 1600,
-    tag: 'más pedido',
-    image: 'https://www.bakelschile.cl/wp-content/uploads/sites/25/2024/05/MicrosoftTeams-image-40-560x370.jpg',
-    // 🖼 Reemplazar con: /images/completo-italiano.jpg
+    tag: 'el más pedido',
+    hasSizes: false,
+    image: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=900&q=85',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -60,30 +57,14 @@ const PRODUCTS = [
   },
   {
     id: 3,
-    slug: 'papas-fritas',
-    name: 'Papas Fritas',
-    category: 'papas',
-    description: 'Papas seleccionadas, fritas en su punto exacto. Crujientes por fuera, tiernas por dentro. Sal de mar.',
-    price: 1500,
-    tag: null,
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85',
-    // 🖼 Reemplazar con: /images/papas-fritas.jpg
-    ingredients: [
-      { id: 'papa',  name: 'Papa seleccionada', removable: false },
-      { id: 'sal',   name: 'Sal de mar',        removable: true  },
-      { id: 'aceite',name: 'Aceite vegetal',    removable: false },
-    ],
-  },
-  {
-    id: 5,
-    slug: 'combo-italiano',
-    name: 'Completo Italiano + Bebida',
+    slug: 'combo-italiano-bebida',
+    name: 'Italiano + Bebida',
     category: 'combos',
-    description: 'Nuestro Italiano completo + bebida individual 350ml helada. La combinación perfecta para el almuerzo.',
+    description: 'El Italiano completo más una bebida individual bien fría de 350ml. La dupla ideal para el almuerzo o la once, al mejor precio del barrio.',
     price: 2000,
-    tag: 'oferta',
-    image: 'https://images.unsplash.com/photo-1623231307228-440268800995?auto=format&fit=crop&w=900&q=85',
-    // 🖼 Reemplazar con: /images/combo-italiano.jpg
+    tag: 'mejor precio',
+    hasSizes: false,
+    image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=85',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -94,34 +75,23 @@ const PRODUCTS = [
     ],
   },
   {
-    id: 7,
-    slug: 'combo-clasico',
-    name: 'Completo Clásico + Bebida',
-    category: 'combos',
-    description: 'El Clásico de toda la vida más una bebida individual. Almuerzo completo al mejor precio del sector.',
-    price: 1500,
-    tag: null,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85',
-    // 🖼 Reemplazar con: /images/combo-clasico.jpg
-    ingredients: [
-      { id: 'pan',     name: 'Pan artesanal',   removable: true  },
-      { id: 'vienesa', name: 'Vienesa premium', removable: false },
-      { id: 'tomate',  name: 'Tomate picado',   removable: true  },
-      { id: 'chucrut', name: 'Chucrut',         removable: true  },
-      { id: 'mayo',    name: 'Mayonesa casera', removable: true  },
-      { id: 'bebida',  name: 'Bebida 350ml',    removable: false },
-    ],
-  },
-  {
-    id: 8,
-    slug: 'bebida-350',
-    name: 'Bebida 350ml',
-    category: 'bebidas',
-    description: 'Bebida individual bien fría. Disponible en Coca-Cola, Pepsi, Fanta y Sprite. Consultar disponibilidad.',
+    id: 4,
+    slug: 'papas-fritas',
+    name: 'Papas Fritas',
+    category: 'papas',
+    description: 'Papas de origen nacional, fritas en su punto exacto: crocantes por fuera y blanditas por dentro. Con sal de mar. Elige el tamaño que más te acomoda.',
     price: 1000,
     tag: null,
-    image: 'https://images.unsplash.com/photo-1581636625402-29b2a704ef13?auto=format&fit=crop&w=900&q=85',
-    // 🖼 Reemplazar con: /images/bebida-350.jpg
-    ingredients: [],
+    hasSizes: true,
+    sizes: [
+      { id: 'personal', label: 'Porción Personal', sublabel: 'Ideal para uno',  price: 1000 },
+      { id: 'familiar', label: 'Porción Familiar',  sublabel: 'Para compartir', price: 2000 },
+    ],
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85',
+    ingredients: [
+      { id: 'papa',   name: 'Papa nacional',  removable: false },
+      { id: 'sal',    name: 'Sal de mar',     removable: true  },
+      { id: 'aceite', name: 'Aceite vegetal', removable: false },
+    ],
   },
 ];
