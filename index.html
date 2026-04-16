@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="description" content="Donde Javier — Delivery de completos y papas fritas en Osorno, Rahue Alto. Pedidos por WhatsApp.">
+  <title>Donde Javier | Delivery Osorno</title>
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts: Playfair Display (display) + DM Sans (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+
+      <!-- Brand -->
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <!-- Delivery / location pin icon -->
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">Donde Javier</span>
+          <span class="brand-location">Osorno · Rahue Alto</span>
+        </div>
+      </div>
+
+      <!-- Right actions -->
+      <div class="header-right">
+        <div class="status-pill" aria-label="Estado del local: Abierto">
+          <span class="status-dot" aria-hidden="true"></span>
+          Abierto
+        </div>
+        <button
+          class="cart-header-btn"
+          id="cart-header-btn"
+          onclick="Cart.toggle()"
+          aria-label="Ver carrito de compras">
+          <svg fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════
+       CATEGORY NAV (sticky, zero-scroll filter)
+  ════════════════════════════════════════════════════ -->
+  <nav class="category-nav" id="category-nav" aria-label="Categorías del menú">
+    <div class="category-nav-inner" id="category-list" role="tablist">
+      <!-- Rendered by menu.js → renderCategories() -->
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <p class="hero-eyebrow">Servicio de Delivery · Osorno</p>
+    <h1 class="hero-title" id="hero-title">
+      La calidad<br>que <span>prefiere.</span>
+    </h1>
+    <p class="hero-sub">
+      Especialidades preparadas al instante, directo a su puerta en Osorno.
+    </p>
+    <button class="hero-cta" onclick="Menu.scrollToMenu()" aria-label="Ir al menú">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+           viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      Ver Carta
+    </button>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       MENU
+  ════════════════════════════════════════════════════ -->
+  <main class="menu-section" id="menu" aria-label="Carta de productos">
+    <div class="menu-header">
+      <h2 class="menu-title" id="menu-title">Toda la Carta</h2>
+      <span class="menu-count" id="menu-count" aria-live="polite"></span>
+    </div>
+    <div class="products-grid" id="products-grid" role="list">
+      <!-- Rendered by menu.js → renderGrid() -->
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p class="footer-brand">Donde Javier</p>
+    <p class="footer-sub">Delivery en Osorno desde Rahue Alto</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/donde.javier" target="_blank" rel="noopener"
+         class="footer-link" aria-label="Instagram">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        @donde.javier
+      </a>
+      <a href="https://wa.me/56944222079" target="_blank" rel="noopener"
+         class="footer-link" aria-label="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+        +56 9 4422 2079
+      </a>
+    </div>
+    <p class="footer-copy">© 2026 Donde Javier · Osorno, Chile</p>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       PRODUCT MODAL OVERLAY (bottom sheet)
+  ════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="product-overlay" role="dialog"
+       aria-modal="true" aria-label="Detalle del producto">
+    <div class="product-modal" id="product-modal">
+      <!-- Rendered dynamically by menu.js → renderModal() -->
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       CART DRAWER
+  ════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="cart-overlay" onclick="Cart.close()"
+       aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cart-drawer"
+         role="complementary" aria-label="Carrito de compras">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        Mi Pedido
+      </h3>
+      <button class="drawer-close" onclick="Cart.close()" aria-label="Cerrar carrito">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-items-list scrollbar-thin" id="cart-items-list">
+      <!-- Rendered by cart.js → renderCart() -->
+    </div>
+
+    <div class="cart-footer" id="cart-totals">
+      <!-- Rendered by cart.js → renderCart() -->
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       CHECKOUT OVERLAY (bottom sheet)
+  ════════════════════════════════════════════════════ -->
+  <div class="checkout-overlay" id="checkout-overlay"
+       role="dialog" aria-modal="true" aria-label="Confirmar pedido">
+    <div class="checkout-sheet" id="checkout-sheet">
+      <!-- Rendered dynamically by checkout.js → renderSheet() -->
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       FLOATING CART BUTTON
+  ════════════════════════════════════════════════════ -->
+  <button class="floating-cart" id="floating-cart"
+          onclick="Cart.toggle()" aria-label="Ver carrito">
+    <div class="fc-left">
+      <svg class="fc-icon" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <span class="fc-label">Ver pedido</span>
+      <span class="fc-badge" id="fc-badge">0</span>
+    </div>
+    <span class="fc-total" id="fc-total">$0</span>
+  </button>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       TOAST CONTAINER
+  ════════════════════════════════════════════════════ -->
+  <div class="toast-container" id="toast-container" aria-live="assertive"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS (order matters)
+  ════════════════════════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
