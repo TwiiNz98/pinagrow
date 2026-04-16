@@ -30,7 +30,7 @@ const PRODUCTS = [
     description: 'El equilibrio exacto entre el frescor del tomate y el carácter intenso del chucrut. Pan artesanal horneado a diario.',
     price: 1000,
     tag: null,
-    image: 'https://images.unsplash.com/photo-1612392166886-ee8475b03af2?auto=format&fit=crop&w=900&q=85',
+    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/Z7JDkununDWLyWEC6-300-x.webp',
     // 🖼 Reemplazar con: /images/completo-clasico.jpg
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
