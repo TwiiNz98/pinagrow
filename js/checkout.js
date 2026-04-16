@@ -13,7 +13,7 @@ const Checkout = (() => {
   /* ─────────────────────────────────────────────────────── */
   function open() {
     if (Cart.getTotalCount() === 0) {
-      Toast.show('Agrega productos antes de confirmar', 'error');
+      Toast.show('Primero agrega productos a tu pedido po', 'error');
       return;
     }
     Cart.close(); // close drawer first
@@ -35,7 +35,7 @@ const Checkout = (() => {
       <div class="checkout-header">
         <div>
           <div class="drag"></div>
-          <h2 class="checkout-title">Confirmar Pedido</h2>
+          <h2 class="checkout-title">Confirmemos tu pedido</h2>
         </div>
         <button class="checkout-close" onclick="Checkout.close()" aria-label="Cerrar">
           <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ const Checkout = (() => {
 
         <!-- Sección: Tu pedido -->
         <div class="form-section">
-          <p class="form-section-title">Resumen del pedido</p>
+          <p class="form-section-title">Lo que pediste</p>
           <div class="order-summary-box" id="order-summary"></div>
         </div>
 
@@ -56,7 +56,7 @@ const Checkout = (() => {
         <div class="form-section">
           <p class="form-section-title">Zona de entrega</p>
           <div class="form-group">
-            <label class="form-label" for="zone-select">Selecciona tu sector</label>
+            <label class="form-label" for="zone-select">¿A qué sector te mandamos?</label>
             <select class="form-input" id="zone-select" onchange="Checkout._onZoneChange()">
               <option value="">— Seleccionar zona —</option>
               ${ZONES.map(z => `<option value="${z.id}">${z.name}</option>`).join('')}
@@ -95,7 +95,7 @@ const Checkout = (() => {
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="client-address">Dirección de entrega</label>
+            <label class="form-label" for="client-address">Dirección exacta</label>
             <input type="text" class="form-input" id="client-address"
                    placeholder="Calle, número, referencia"
                    autocomplete="street-address"
@@ -103,15 +103,15 @@ const Checkout = (() => {
             <p class="form-error" id="address-error">Ingresa tu dirección completa.</p>
           </div>
           <div class="form-group">
-            <label class="form-label" for="client-notes">Notas adicionales <span style="color:var(--text-3)">(opcional)</span></label>
+            <label class="form-label" for="client-notes">Algo más que decirnos <span style="color:var(--text-3)">(opcional)</span></label>
             <input type="text" class="form-input" id="client-notes"
-                   placeholder="Ej: tocar timbre, piso 2, etc.">
+                   placeholder="Timbre, referencia, piso...">
           </div>
         </div>
 
         <!-- Totales -->
         <div class="form-section">
-          <p class="form-section-title">Resumen de cobro</p>
+          <p class="form-section-title">Lo que vas a pagar</p>
           <div id="checkout-totals"></div>
           <button class="send-order-btn" id="send-order-btn" onclick="Checkout._submit()">
             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -120,8 +120,8 @@ const Checkout = (() => {
             Enviar pedido por WhatsApp
           </button>
           <p class="checkout-footer-note">
-            Te redirigiremos a WhatsApp para confirmar con Javier.<br>
-            Pago al momento de la entrega en efectivo o transferencia.
+            Te vamos a llevar directo al WhatsApp de Javier para confirmar.<br>
+            El pago es contra entrega: efectivo o transferencia.
           </p>
         </div>
 
@@ -317,7 +317,7 @@ const Checkout = (() => {
       `${'─'.repeat(32)}`,
       ``,
       `_Tiempo estimado: ${zone?.eta || '25–40 min'}_`,
-      `_Gracias por preferirnos. Le confirmamos a la brevedad._ 🙏`,
+      `_¡Muchas gracias por pedirnos. Le confirmamos a la brevedad._ 🙏`,
     ].join('\n');
 
     setTimeout(() => {
