@@ -1,15 +1,13 @@
 /* ==========================================================
-   cart.js — Donde Javier | Estado del carrito y drawer
+   cart.js — Donde Javier | Estado global del carrito
    ========================================================== */
 
 const Cart = (() => {
 
-  /* ── State ── */
-  let items        = [];   // [ { id, name, price, image, qty, removed:[], uid } ]
+  let items        = [];
   let drawerOpen   = false;
   let deliveryCost = 0;
 
-  /* ── DOM refs ── */
   const drawerEl  = () => document.getElementById('cart-drawer');
   const overlayEl = () => document.getElementById('cart-overlay');
   const itemsEl   = () => document.getElementById('cart-items-list');
@@ -17,9 +15,7 @@ const Cart = (() => {
   const footerEl  = () => document.getElementById('cart-totals');
   const floatEl   = () => document.getElementById('floating-cart');
 
-  /* ─────────────────────────────────────────────────────── */
   function init() {
-    /* restore from sessionStorage if exists */
     try {
       const saved = sessionStorage.getItem('dj_cart');
       if (saved) items = JSON.parse(saved);
@@ -29,18 +25,18 @@ const Cart = (() => {
     updateFloating();
   }
 
-  /* ── PUBLIC: add item ── */
-  function add(product, qty = 1, removed = []) {
-    const uid = Date.now() + Math.random();
+  /* sizeName: string opcional, ej. "Porción Familiar" */
+  function add(product, qty = 1, removed = [], sizeName = null) {
     items.push({
-      uid,
-      id:      product.id,
-      slug:    product.slug,
-      name:    product.name,
-      price:   product.price,
-      image:   product.image,
+      uid:      Date.now() + Math.random(),
+      id:       product.id,
+      slug:     product.slug,
+      name:     product.name,
+      price:    product.price,
+      image:    product.image,
       qty,
       removed,
+      sizeName,
     });
     persist();
     renderCart();
@@ -48,33 +44,23 @@ const Cart = (() => {
     updateFloating();
   }
 
-  /* ── PUBLIC: get count for a product id ── */
   function getCountFor(productId) {
     return items.filter(i => i.id === productId).reduce((s, i) => s + i.qty, 0);
   }
 
-  /* ── INTERNAL: update qty ── */
   function updateQty(uid, delta) {
     const idx = items.findIndex(i => i.uid === uid);
     if (idx < 0) return;
     items[idx].qty += delta;
     if (items[idx].qty <= 0) items.splice(idx, 1);
-    persist();
-    renderCart();
-    updateBadge(false);
-    updateFloating();
+    persist(); renderCart(); updateBadge(); updateFloating();
   }
 
-  /* ── INTERNAL: remove item ── */
   function remove(uid) {
     items = items.filter(i => i.uid !== uid);
-    persist();
-    renderCart();
-    updateBadge(false);
-    updateFloating();
+    persist(); renderCart(); updateBadge(); updateFloating();
   }
 
-  /* ── Toggle drawer ── */
   function toggle() {
     drawerOpen = !drawerOpen;
     drawerEl().classList.toggle('open', drawerOpen);
@@ -89,21 +75,18 @@ const Cart = (() => {
     document.body.style.overflow = '';
   }
 
-  /* ── Set delivery cost (called from Checkout) ── */
   function setDelivery(cost) {
     deliveryCost = cost;
     renderCart();
   }
 
-  /* ── Getters ── */
-  function getItems()     { return [...items]; }
-  function getSubtotal()  { return items.reduce((s, i) => s + i.price * i.qty, 0); }
-  function getTotal()     { return getSubtotal() + deliveryCost; }
-  function getTotalCount(){ return items.reduce((s, i) => s + i.qty, 0); }
+  function getItems()      { return [...items]; }
+  function getSubtotal()   { return items.reduce((s, i) => s + i.price * i.qty, 0); }
+  function getTotal()      { return getSubtotal() + deliveryCost; }
+  function getTotalCount() { return items.reduce((s, i) => s + i.qty, 0); }
 
-  /* ── RENDER DRAWER ── */
   function renderCart() {
-    const list  = itemsEl();
+    const list   = itemsEl();
     const footer = footerEl();
     if (!list || !footer) return;
 
@@ -117,30 +100,31 @@ const Cart = (() => {
               <path d="M16 10a4 4 0 0 1-8 0"/>
             </svg>
           </div>
-          <h4>Carrito vacío</h4>
-          <p>Agrega productos de la carta para comenzar tu pedido.</p>
+          <h4>Tu pedido está vacío</h4>
+          <p>Agrega productos de la carta para armar tu pedido.</p>
         </div>`;
       footer.innerHTML = '';
     } else {
       list.innerHTML = items.map((item, idx) => {
-        const sub  = item.price * item.qty;
-        const mods = item.removed.length > 0
-          ? `<span class="cart-item-mods">Sin: ${item.removed.join(', ')}</span>` : '';
+        const sub   = item.price * item.qty;
+        const mods  = item.removed.length > 0
+          ? `<p class="cart-item-mods">Sin: ${item.removed.join(', ')}</p>` : '';
+        const sizeTag = item.sizeName
+          ? `<p class="cart-item-mods" style="color:var(--text-3)">${item.sizeName}</p>` : '';
         return `
-        <div class="cart-item-row" style="animation-delay:${idx*40}ms" data-uid="${item.uid}">
+        <div class="cart-item-row" style="animation-delay:${idx*40}ms">
           <div class="cart-item-thumb">
-            <img src="${item.image}" alt="${item.name}" loading="lazy"
-                 onerror="this.src='${item.image}'">
+            <img src="${item.image}" alt="${item.name}" loading="lazy">
           </div>
           <div class="cart-item-info">
             <p class="cart-item-name">${item.name}</p>
-            ${mods}
+            ${sizeTag}${mods}
             <p class="cart-item-price">$${sub.toLocaleString('es-CL')}</p>
           </div>
           <div class="cart-item-controls">
-            <button class="ci-qty-btn" onclick="Cart._updateQty(${item.uid}, -1)" aria-label="Reducir">−</button>
+            <button class="ci-qty-btn" onclick="Cart._updateQty(${item.uid}, -1)" aria-label="Menos">−</button>
             <span class="ci-qty">${item.qty}</span>
-            <button class="ci-qty-btn" onclick="Cart._updateQty(${item.uid}, 1)" aria-label="Aumentar">+</button>
+            <button class="ci-qty-btn" onclick="Cart._updateQty(${item.uid}, 1)" aria-label="Más">+</button>
           </div>
         </div>`;
       }).join('');
@@ -148,21 +132,14 @@ const Cart = (() => {
       const sub = getSubtotal();
       const del = deliveryCost;
       const tot = getTotal();
-
       footer.innerHTML = `
         <div class="cart-subtotal-row">
           <span>Subtotal</span>
           <span class="amount">$${sub.toLocaleString('es-CL')}</span>
         </div>
-        ${del > 0 ? `
-        <div class="cart-subtotal-row">
-          <span>Delivery</span>
-          <span class="amount">$${del.toLocaleString('es-CL')}</span>
-        </div>` : `
-        <div class="cart-subtotal-row">
-          <span>Delivery</span>
-          <span class="amount" style="color:var(--text-3)">Se calcula al confirmar</span>
-        </div>`}
+        ${del > 0
+          ? `<div class="cart-subtotal-row"><span>Delivery</span><span class="amount">$${del.toLocaleString('es-CL')}</span></div>`
+          : `<div class="cart-subtotal-row"><span>Delivery</span><span class="amount" style="color:var(--text-3);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500">Se calcula al confirmar</span></div>`}
         <div class="cart-subtotal-row total">
           <span>Total</span>
           <span class="amount">$${tot.toLocaleString('es-CL')}</span>
@@ -176,7 +153,6 @@ const Cart = (() => {
     }
   }
 
-  /* ── UPDATE BADGE ── */
   function updateBadge(pop = false) {
     const n = getTotalCount();
     if (!badgeEl()) return;
@@ -193,13 +169,11 @@ const Cart = (() => {
     }
   }
 
-  /* ── FLOATING CART ── */
   function updateFloating() {
-    const el  = floatEl();
+    const el = floatEl();
     if (!el) return;
     const n   = getTotalCount();
     const tot = getTotal();
-
     if (n === 0) {
       el.classList.remove('visible');
     } else {
@@ -209,27 +183,18 @@ const Cart = (() => {
     }
   }
 
-  /* ── PERSIST ── */
   function persist() {
     try { sessionStorage.setItem('dj_cart', JSON.stringify(items)); } catch(_) {}
   }
 
-  /* ── CLEAR (after order) ── */
   function clear() {
-    items = [];
-    deliveryCost = 0;
-    persist();
-    renderCart();
-    updateBadge(false);
-    updateFloating();
+    items = []; deliveryCost = 0;
+    persist(); renderCart(); updateBadge(); updateFloating();
   }
 
-  /* Public surface */
   return {
     init, add, getCountFor, toggle, close,
-    setDelivery, getItems, getSubtotal, getTotal, getTotalCount,
-    clear,
-    // Internal methods exposed for inline handlers
+    setDelivery, getItems, getSubtotal, getTotal, getTotalCount, clear,
     _updateQty: updateQty,
     _remove:    remove,
   };
