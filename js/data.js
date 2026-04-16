@@ -48,7 +48,7 @@ const PRODUCTS = [
     description: 'Cremosa palta natural procesada diariamente sobre vienesa premium. El plato más solicitado de la casa.',
     price: 1600,
     tag: 'más pedido',
-    image: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=900&q=85',
+    image: 'https://www.bakelschile.cl/wp-content/uploads/sites/25/2024/05/MicrosoftTeams-image-40-560x370.jpg',
     // 🖼 Reemplazar con: /images/completo-italiano.jpg
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
