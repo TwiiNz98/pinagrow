@@ -28,7 +28,7 @@ const PRODUCTS = [
     price: 1000,
     tag: null,
     hasSizes: false,
-    image: 'https://images.unsplash.com/photo-1612392166886-ee8475b03af2?auto=format&fit=crop&w=900&q=85',
+    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/6qJj9RnRWBbW9LDRR-300-x.webp',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -46,7 +46,7 @@ const PRODUCTS = [
     price: 1600,
     tag: 'el más pedido',
     hasSizes: false,
-    image: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=900&q=85',
+    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/LsSkXQK3p5K2Yu6rT-300-x.webp',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -64,7 +64,7 @@ const PRODUCTS = [
     price: 2000,
     tag: 'mejor precio',
     hasSizes: false,
-    image: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=85',
+    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/LsSkXQK3p5K2Yu6rT-300-x.webp',
     ingredients: [
       { id: 'pan',     name: 'Pan artesanal',   removable: true  },
       { id: 'vienesa', name: 'Vienesa premium', removable: false },
@@ -87,7 +87,7 @@ const PRODUCTS = [
       { id: 'personal', label: 'Porción Personal', sublabel: 'Ideal para uno',  price: 1000 },
       { id: 'familiar', label: 'Porción Familiar',  sublabel: 'Para compartir', price: 2000 },
     ],
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85',
+    image: 'https://tofuu.getjusto.com/orioneat-local/resized2/NvtYp3WFB9kvZBsqA-300-x.webp',
     ingredients: [
       { id: 'papa',   name: 'Papa nacional',  removable: false },
       { id: 'sal',    name: 'Sal de mar',     removable: true  },
